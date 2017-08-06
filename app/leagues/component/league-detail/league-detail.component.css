@@ -1,0 +1,27 @@
+input[type= "file" ] {
+    cursor: pointer;
+}
+
+input.ng-invalid,
+textarea.ng-invalid {
+    border: 1px solid red;
+}
+input.ng-valid,
+textarea.ng-valid{
+    border: 1px solid green;
+}
+button[type= "submit"]:hover{
+    background-color: green;
+    color: white;
+    border-radius: 8px;
+}
+button[type= "cancel"]:hover{
+    background-color: 	#cd3333;
+    color: white;
+    border-radius: 8px;
+}
+button[type= "update"]:hover{
+    background-color:#323299;
+    color: white;
+    border-radius: 8px;
+}

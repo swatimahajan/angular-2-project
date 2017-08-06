@@ -1,0 +1,157 @@
+<div class="modal fade" [id]="modalId">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            
+            <form [formGroup]="leagueForm">
+                <div class="modal-body">
+
+
+                    <div class="form-group" >
+                        <label for="name-field">League name</label>
+                        <input type="text" #refName class="form-control" id="name-field" placeholder="Enter League name" formControlName="name" [(ngModel)]="name" />
+                        
+                    <!--Error message-->
+
+                        <div *ngIf="leagueForm.controls['name'].hasError('required')" class="alert alert-danger">
+                                Please enter a name
+                        </div>
+                        <!--{{refName.className}}-->
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="desc-area">Description</label>
+                        <textarea #refName  class="form-control" id="desc-area" rows="3" placeholder="Enter description for the league" formControlName="description" [(ngModel)]="description">
+                        </textarea>
+                        <div *ngIf="leagueForm.controls['description'].hasError('required')" class="alert alert-danger">
+                                Please enter description
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="banner-field">Choose banner</label> 
+                        <input type="file"  (change)="fileChange($event)" [(ngModel)]='leagueBanner' placeholder="Upload file" accept="image/gif, image/jpeg, image/png" class="form-control-file" id="banner-field"  aria-describedby="fileHelp" formControlName="banner" #refName  />
+                        <small id="fileHelp" class="form-text text-muted">Choose jpeg/png as banner for the channel.</small>
+                    </div>
+                    <fieldset class="form-group" >
+                        <legend>Preffered Gender</legend>
+
+                        <label class="form-check-label">
+                            <input  type="radio" #refName class="form-check-input" name="preferredGender" id="male" value="m"  formControlName="preferredGender" [(ngModel)]="preferredGender">
+                                    Male
+                        </label>
+
+
+                        <label class="form-check-label">
+                            <input  type="radio" #refName class="form-check-input" name="preferredGender" id="female" value="f" formControlName="preferredGender" [(ngModel)]="preferredGender">
+                                Female
+                        </label>
+
+
+                        <label class="form-check-label">
+                            <input  type="radio" #refName class="form-check-input" name="preferredGender" id="All" value="All" formControlName="preferredGender" [(ngModel)]="preferredGender" >
+                                All
+                        </label>
+
+                           <!--Error message--> 
+                        <div *ngIf="leagueForm.controls['preferredGender'].hasError('required')" class="alert alert-danger">
+                                Please select a gender
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group" >
+                        <label for="options">preferred AgeGroup:</label>
+                        <div>
+                            <label>
+                                <input [ngModelOptions]="{standalone: true}" type="checkbox"
+                                    name="prefAgeGroup[0].value"
+                                    value="{{prefAgeGroup[0].value}}"
+                                    [(ngModel)]="prefAgeGroup[0].status"
+                                    (ngModelChange) ="preferredAgeGroup"
+                                     />
+                                         {{prefAgeGroup[0].display}}
+                            </label>
+                            </div>
+                           <div>
+                             <label>
+                                <input [ngModelOptions]="{standalone: true}" type="checkbox"
+                                    name="prefAgeGroup[1].value"
+                                    value="{{prefAgeGroup[1].value}}"
+                                    [(ngModel)]="prefAgeGroup[1].status"
+                                    (ngModelChange) ="preferredAgeGroup"
+                                     />
+                                         {{prefAgeGroup[1].display}}
+                            </label>
+                            </div>
+                            <div><label>
+                                <input [ngModelOptions]="{standalone: true}" type="checkbox"
+                                    name="prefAgeGroup[2].value"
+                                    value="{{prefAgeGroup[2].value}}"
+                                    [(ngModel)]="prefAgeGroup[2].status"
+                                     />
+                                         {{prefAgeGroup[2].display}}
+                            </label></div>
+                        </div>
+
+                    <div class="form-group">
+                        <label for="options">Preferred Language:</label>
+                        <div>
+                            <label>
+                                <input [ngModelOptions]="{standalone: true}" type="checkbox"
+                                    name="prefLang[0].value"  
+                                    value="{{prefLang[0].value}}"
+                                    [(ngModel)]="prefLang[0].status" 
+                                    />
+                                         {{prefLang[0].display}}
+                                
+                            </label>
+                        </div>
+                         <div>
+                            <label>
+                                <input [ngModelOptions]="{standalone: true}" type="checkbox"
+                                    name="prefLang[1].value"  
+                                    value="{{prefLang[1].value}}"
+                                    [(ngModel)]="prefLang[1].status" 
+                                    />
+                                         {{prefLang[1].display}}
+                                
+                            </label>
+                        </div>
+                         <div>
+                            <label>
+                                <input [ngModelOptions]="{standalone: true}" type="checkbox"
+                                    name="prefLang[2].value"  
+                                    value="{{prefLang[2].value}}"
+                                    [(ngModel)]="prefLang[2].status" 
+                        
+                                    />
+                                         {{prefLang[2].display}}
+                                
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                                <input #refName type="checkbox" class="form-check-input" formControlName="privateAccess" />
+                                This is a private League
+                            </label>
+
+                        <!--Error message-->
+                       
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <!--<button  type="button" (click)="getdata(league)">get form</button>-->
+                    <button class="btn btn-secondary btn-xl" type="submit" data-dismiss="modal" [disabled]="!leagueForm.valid" (click)="submitForm()">Create New</button>
+                    <button class="btn btn-secondary btn-xl" type="update" data-dismiss="modal" (click)="update()"> Update Existing</button>
+                    <button class="btn btn-secondary btn-xl" type="cancel" data-dismiss="modal" (click)= "resetForm()">Cancel</button>
+                    <!--<button class="btn btn-secondary btn-xl" type="delete" data-dismiss="modal" (click)= "delete();$event.stopPropagation()">Delete</button>-->
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-xs-6">
+        <h1>League List</h1>
+    </div>
+    <div class="col-xs-6 text-xs-right">
+        <button class="btn-success btn-md" [attr.data-target]=" '#' + leagueDetail.modalId" data-toggle="modal"><i class="fa fa-plus" aria-hidden="true" ></i> Add League</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> id </th>
+                    <th> Name </th>
+                    <th> Description </th>
+                    <th> Thumbnail </th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr id= "league-row" (click)= "redirect(league)" *ngFor = "let league of LeagueData" [attr.data-target]=" '#' + leagueDetail.modalId" data-toggle="modal" (click)="(LeagueData.value)" >
+                    <!--data-toggle="modal"-->
+                    <td> {{ league.id }} </td>
+                    <td> {{ league.name }} </td>
+                    <td> {{ league.description }} </td>
+                    <td> <img src="{{ league.thumbnail }}" class="thumbnail" /> </td>
+                    <!--<td><button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit </button></td>-->
+                    
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+<league-detail #leagueDetail ></league-detail>

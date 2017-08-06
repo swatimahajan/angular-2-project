@@ -1,0 +1,106 @@
+<div>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form >
+                <div class="modal-body">
+
+
+                    <div class="form-group"  >
+                        <label for="name-field">League name</label>
+                        <input type="text" class="form-control" id="name-field" placeholder="Enter League name" name="name" [(ngModel)]="name" />
+                        
+                    
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="desc-area">Description</label>
+                        <textarea  class="form-control" id="desc-area" rows="3" placeholder="Enter description for the league" name="description" [(ngModel)]="description">
+                        </textarea>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label for="banner-field">Choose banner</label>
+                        <input type="file"  (change)="fileChange($event)" placeholder="Upload file" accept="image/gif, image/jpeg, image/png" class="form-control-file" id="banner-field" name="banner" [(ngModel)]="banner" aria-describedby="fileHelp" />
+                        <small id="fileHelp" class="form-text text-muted">Choose jpeg/png as banner for the channel.</small>
+                    </div>
+                    <fieldset class="form-group">
+                        <legend>Preffered Gender</legend>
+
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="prefGender" id="male" value="Male" checked  [(ngModel)]="preferredGender">
+                                    Male
+                        </label>
+
+
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="prefGender" id="female" value="Female" [(ngModel)]="preferredGender" >
+                                Female
+                        </label>
+
+
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="prefGender" id="All" value="All"  [(ngModel)]="preferredGender">
+                                All
+                        </label>
+
+                    
+                    </fieldset>
+
+                    <!--<ul formArrayName="prefAge">
+                         Must set the formArrayName -->
+                        <!--<li *ngFor="let def of prefAgeGroup; let i = index">-->
+                            <!--<input type="checkbox" "{{i}}" [value]="def.value" (change)="services[$event.target.getAttribute('value')]=$event.target.checked">                            {{def.display}}-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <div class="form-group">
+                        <label for="options">preferred AgeGroup:</label>
+                        <div *ngFor="let option of prefAgeGroup">
+                            <label>
+                                <input [ngModelOptions]="{standalone: true}" type="checkbox"
+                                    name="options"
+                                    value="{{option.value}}" name="preferredAgeGroup"
+                                    [(ngModel)]="preferredAgeGroup" />
+                                         {{option.display}}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="options">Preferred Language:</label>
+                        <div *ngFor="let option of prefLang">
+                            <label>
+                                <input [ngModelOptions]="{standalone: true}" type="checkbox"
+                                    name="options"
+                                    value="{{option.value}}" name="preferredLanguage"
+                                    [(ngModel)]="preferredLanguage"/>
+                                         {{option.display}}
+                                
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" />
+                                This is a private League
+                            </label>
+
+                        
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <!--<button  type="button" (click)="getdata()">get form</button>-->
+                    <!--<button  type="button" (click)="getAllLeagues()">get form</button>-->
+                    <button class="btn btn-secondary btn-xl" type="button"  (click)= "resetForm()">Cancel</button>
+                    <button class="btn btn-secondary btn-xl" type="submit"  (click)="submitForm()" >Save</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
